@@ -1,11 +1,15 @@
-let finDeTransmisionDeDatos = function(id,callback){
-    console.log('Transferencia',id,'terminada');
-    callback();
-}
+let finDeTransmisionDeDatos = function(id){
+    console.log('Transferencia',id,'terminada');}
 
-let obtenDatosDeInternet = function(id,duracion,callback){
+let obtenDatosDeInternet = function(id,duracion){
     console.log('Proceso',id,'obteniendo datos de Internet');
-    setTimeout(finDeTransmisionDeDatos,duracion,id,callback);
+
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            finDeTransmisionDeDatos(id);
+            resolve();
+        }, duracion);
+    });
 }
 
 module.exports.getDatos = obtenDatosDeInternet;
